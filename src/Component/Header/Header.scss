@@ -1,0 +1,72 @@
+/* src/styles/Header.scss */
+@use "../../styles/constants.scss" as *;
+@use "../../styles/common.scss" as *;
+
+.header {
+  width: 100%;
+  // background: linear-gradient(to right, #afaeae, #f5f7fa);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 24px;
+  height: 60px;
+  position: relative;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+.user-name{
+  font-size: 16px;
+  font-weight: 400;
+  color: #040404;
+}
+.logo-sections {
+  display: flex;
+  align-items: center;
+  
+  .logo {
+    height: 38px;
+    width: auto;
+    transition: transform 0.2s ease;
+    
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}
+
+.company-name {
+  font-family: $font-family-title;
+  font-size: 16px;
+  font-weight: 400;
+  color: #5f6368;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  .icon-bell,
+  .icon-user {
+    font-size: 35px;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 8px;
+    border-radius: 8px;
+    
+    &:hover {
+      transform: scale(1.05);
+      background-color: rgba(107, 114, 128, 0.08);
+      color: #4b5563;
+    }
+  }
+
+  .icon-user {
+    &:hover {
+      color: #6366f1;
+      background-color: rgba(99, 102, 241, 0.08);
+    }
+  }
+}

@@ -1,0 +1,126 @@
+.enrollment-container .page-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.enrollment-container .add-enrollment-btn {
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.enrollment-container .add-enrollment-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.enrollment-container .enrollment-student-name {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.enrollment-container .enrollment-student-name svg {
+  color: #6c757d;
+}
+
+.enrollment-container .action-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.enrollment-container .action-buttons .btn {
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.enrollment-container .action-buttons .btn:hover {
+  transform: scale(1.1);
+}
+
+/* Modal styling */
+.enrollment-container .modal-content {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.enrollment-container .modal-header {
+  border-bottom: 1px solid #e9ecef;
+  padding: 20px 25px;
+}
+
+.enrollment-container .modal-header .modal-title {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.enrollment-container .modal-body {
+  padding: 25px;
+}
+
+.enrollment-container .modal-footer {
+  border-top: 1px solid #e9ecef;
+  padding: 20px 25px;
+}
+
+.enrollment-container .form-label {
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 8px;
+}
+
+.enrollment-container .form-control,
+.enrollment-container .form-select {
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  padding: 12px 16px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.enrollment-container .form-control:focus,
+.enrollment-container .form-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.enrollment-container .btn {
+  padding: 10px 20px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.enrollment-container .btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .enrollment-container .page-title {
+    font-size: 1.5rem;
+  }
+  
+  .enrollment-container .add-enrollment-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+  
+  .enrollment-container .modal-body {
+    padding: 20px;
+  }
+  
+  .enrollment-container .action-buttons {
+    flex-direction: column;
+    gap: 3px;
+  }
+  
+  .enrollment-container .action-buttons .btn {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,30 @@
+.custom-breadcrumb {
+  background: transparent;
+  padding: 0;
+  margin-bottom: 20px;
+  
+  .breadcrumb-item {
+    font-size: 14px;
+    
+    a {
+      color: #6c757d;
+      text-decoration: none;
+      
+      &:hover {
+        color: #495057;
+        text-decoration: underline;
+      }
+    }
+    
+    &.active {
+      color: #495057;
+      font-weight: 600;
+    }
+  }
+  
+  .breadcrumb-item + .breadcrumb-item::before {
+    content: ">";
+    color: #6c757d;
+    padding: 0 8px;
+  }
+} 

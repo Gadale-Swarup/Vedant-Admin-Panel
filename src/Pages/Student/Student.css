@@ -1,0 +1,126 @@
+.student-container .page-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.student-container .add-student-btn {
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.student-container .add-student-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.student-container .student-name {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.student-container .student-name svg {
+  color: #6c757d;
+}
+
+.student-container .action-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.student-container .action-buttons .btn {
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.student-container .action-buttons .btn:hover {
+  transform: scale(1.1);
+}
+
+/* Modal styling */
+.student-container .modal-content {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.student-container .modal-header {
+  border-bottom: 1px solid #e9ecef;
+  padding: 20px 25px;
+}
+
+.student-container .modal-header .modal-title {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.student-container .modal-body {
+  padding: 25px;
+}
+
+.student-container .modal-footer {
+  border-top: 1px solid #e9ecef;
+  padding: 20px 25px;
+}
+
+.student-container .form-label {
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 8px;
+}
+
+.student-container .form-control,
+.student-container .form-select {
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  padding: 12px 16px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.student-container .form-control:focus,
+.student-container .form-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.student-container .btn {
+  padding: 10px 20px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.student-container .btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .student-container .page-title {
+    font-size: 1.5rem;
+  }
+  
+  .student-container .add-student-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+  
+  .student-container .modal-body {
+    padding: 20px;
+  }
+  
+  .student-container .action-buttons {
+    flex-direction: column;
+    gap: 3px;
+  }
+  
+  .student-container .action-buttons .btn {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+}
