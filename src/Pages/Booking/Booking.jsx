@@ -36,6 +36,16 @@ const Booking = () => {
       turf: "Turf C",
       price: 800,
     },
+    {
+      id: 4,
+      customerName: "Charlie Lee",
+      bookingTime: "6:00 PM",
+      date: "2024-07-03",
+      players: 4,
+      sport: "Badminton",
+      turf: "Turf C",
+      price: 800,
+    },
   ]);
 
   // Filter state
