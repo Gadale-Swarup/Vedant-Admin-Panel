@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col, Button, Form, ButtonGroup } from "react-bootstrap";
 import { FaEllipsisV } from "react-icons/fa";
 import CustomTable from "../../Component/Table/Table";
+import CustomBreadcrumb from "../../Component/Breadcrumb/Breadcrumb";
 import "./Booking.scss";
 
 const Booking = () => {
@@ -137,8 +138,18 @@ const Booking = () => {
     </Button>,
   ]);
 
+  const breadcrumbItems = [
+    { label: "Dashboard", path: "/dashboard" },
+    { label: "Bookings", path: "/booking" },
+  ];
+
   return (
     <Container fluid className="booking-container p-4">
+      <Row className="mb-4">
+        <Col>
+          <CustomBreadcrumb items={breadcrumbItems} />
+        </Col>
+      </Row>
       <Row className="mb-4">
         <Col>
           <h2 className="page-title">Bookings</h2>

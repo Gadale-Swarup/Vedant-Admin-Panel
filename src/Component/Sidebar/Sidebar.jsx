@@ -4,6 +4,8 @@ import {
   FaBars,
   FaSignOutAlt,
   FaBook,
+  FaUser,
+  FaCog,
 } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import "./Sidebar.scss";
@@ -33,6 +35,16 @@ const Sidebar = () => {
           label: "Booking",
           path: "/booking",
           icon: FaBook,
+        },
+        {
+          label: "Users",
+          path: "/users",
+          icon: FaUser,
+        },
+        {
+          label: "Court Management",
+          path: "/court-management",
+          icon: FaCog,
         },
       ],
     },

@@ -72,3 +72,11 @@ export const getCreatorDashboardAPI = async () => {
 export const logoutCreatorAPI = () => {
   localStorage.removeItem('creator_token');
 };
+
+export const createStudent = (data) => {
+  return creatorApi.post("/creators/add", data);
+};
+
+export const loginUser = (credentials) => {
+  return creatorApi.post("/creators/login", credentials);
+};

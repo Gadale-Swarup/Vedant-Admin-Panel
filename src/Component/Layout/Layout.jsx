@@ -34,6 +34,7 @@ import { Outlet } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
 import Header from '../Header/Header';
 import './Layout.scss';
+import Footer from '../Footer/Footer';
 
 const Layout = ({ isCreator = false }) => {
   return (
@@ -50,6 +51,7 @@ const Layout = ({ isCreator = false }) => {
           }}
         >
           <Outlet />
+          <Footer/>
         </div>
       </div>
     </div>

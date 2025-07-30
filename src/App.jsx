@@ -14,11 +14,9 @@ import ProtectedRoute from "./Protected_Routes/protectedRoute";
 import Loader from "./Component/Loader/Loader";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import Login from "./Pages/Login/Login";
-import Courses from "./Pages/Courses/Courses";
-import Student from "./Pages/Student/Student";
-import EnrollmentStudent from "./Pages/Enrollmentstudent/EnrollmentStudent";
-import CourseCategory from "./Pages/Category/Coursecategory";
 import Booking from "./Pages/Booking/Booking";
+import Users from "./Pages/Users/Users";
+import CourtManagement from "./Pages/CourtManagement/CourtManagement";
 
 const Layout = lazy(() => import("./Component/Layout/Layout"));
 
@@ -42,11 +40,9 @@ function App() {
             }
           >
             <Route path="dashboard" element={<Dashboard />} />
-            <Route path="courses" element={<Courses />} />
-            <Route path="student" element={<Student />} />
-            <Route path="enrollment" element={<EnrollmentStudent />} />
-            <Route path="category" element={<CourseCategory />} />
             <Route path="booking" element={<Booking />} />
+            <Route path="users" element={<Users />} />
+            <Route path="court-management" element={<CourtManagement />} />
           </Route>
         </Routes>
       </Suspense>
