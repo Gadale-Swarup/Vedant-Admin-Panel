@@ -1,0 +1,533 @@
+.court-booking-container {
+  background-color: #f8f9fa;
+  padding: 0rem 0;
+  height: auto;
+  overflow-y: auto;
+
+  .page-header {
+    margin-bottom: 2rem;
+    text-align: start;
+
+    .page-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #2c3e50;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #2c3e50 0%, #5e81f4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-subtitle {
+      font-size: 14px;
+      color: #6c757d;
+      margin-bottom: 0;
+      font-weight: 400;
+    }
+  }
+
+  .selection-card,
+  .slots-card,
+  .court-details-card {
+    border: none;
+    // border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #fff;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+
+    &:hover {
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      transform: translateY(-4px);
+    }
+
+    .card-body {
+      padding: 1rem;
+    }
+
+    .card-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #2c3e50;
+      margin-bottom: 2rem;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background: linear-gradient(135deg, #5e81f4 0%, #4a6cf7 100%);
+        border-radius: 2px;
+      }
+    }
+  }
+
+  .form-label {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.75rem;
+    font-size: 15px;
+    display: block;
+  }
+
+  .sport-select,
+  .court-select {
+    border: 2px solid #e9ecef;
+    border-radius: 16px;
+    padding: 16px 20px;
+    font-size: 16px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    color: #2c3e50;
+
+    &:focus {
+      border-color: #5e81f4;
+      box-shadow: 0 0 0 4px rgba(94, 129, 244, 0.1);
+      background-color: #fff;
+      outline: none;
+    }
+
+    &:hover {
+      border-color: #5e81f4;
+    }
+
+    option {
+      padding: 12px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+
+  .date-picker-container {
+    position: relative;
+    margin-top: 12px;
+
+    .date-picker-scroll {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 12px 0;
+      scrollbar-width: thin;
+      scrollbar-color: #5e81f4 #f1f1f1;
+      margin: 0 -12px;
+      padding: 12px;
+
+      &::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #5e81f4;
+        border-radius: 4px;
+
+        &:hover {
+          background: #4a6cf7;
+        }
+      }
+
+      .date-card {
+        flex-shrink: 0;
+        width: 60px;
+        height: 80px;
+        border: 2px solid #e9ecef;
+        border-radius: 16px;
+        background-color: #fff;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+        &:hover {
+          border-color: #5e81f4;
+          transform: translateY(-3px);
+          box-shadow: 0 8px 24px rgba(94, 129, 244, 0.2);
+        }
+
+        &.selected {
+          background: linear-gradient(135deg, #5e81f4 0%, #4a6cf7 100%);
+          border-color: #5e81f4;
+          color: #fff;
+          transform: translateY(-3px);
+          box-shadow: 0 12px 32px rgba(94, 129, 244, 0.4);
+
+          .date-day,
+          .date-number {
+            color: #fff;
+          }
+
+          .today-label {
+            color: #fff;
+            opacity: 0.9;
+          }
+        }
+
+        &.today {
+          border-color: #28a745;
+          background: linear-gradient(135deg, #f8fff9 0%, #e8f5e8 100%);
+          box-shadow: 0 4px 16px rgba(40, 167, 69, 0.15);
+
+          .today-label {
+            color: #28a745;
+            font-size: 11px;
+            font-weight: 700;
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+        }
+
+        .date-day {
+          font-size: 13px;
+          font-weight: 600;
+          color: #6c757d;
+          margin-bottom: 6px;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+
+        .date-number {
+          font-size: 24px;
+          font-weight: 800;
+          color: #2c3e50;
+          line-height: 1;
+        }
+
+        .today-label {
+          font-size: 11px;
+          font-weight: 700;
+          color: #28a745;
+          margin-top: 4px;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+      }
+    }
+  }
+
+  .loading-slots {
+    text-align: center;
+    padding: 3rem 0;
+
+    .spinner-border {
+      width: 3rem;
+      height: 3rem;
+      color: #5e81f4;
+    }
+
+    p {
+      color: #6c757d;
+      margin-top: 1.5rem;
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+
+  .time-slots {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 2rem;
+
+    .time-slot-card {
+    //   border: 2px solid #e1e1e1;
+    //   border-radius: 8px;
+      padding: 12px 8px;
+      background-color: #70d09b;
+      color: #2c3e50;
+      transition: all 0.3s ease;
+      text-align: center;
+      cursor: pointer;
+      min-height: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      &.selected {
+        background-color: #5e81f4;
+        border-color: #5e81f4;
+        color: #fff;
+
+        .time-text,
+        .available-text {
+          color: #fff;
+        }
+      }
+
+      .time-text {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 2px;
+        color: #2b6d2c;
+      }
+
+      .available-text {
+        font-size: 11px;
+        font-weight: 400;
+        color: #2b6d2c;
+      }
+    }
+  }
+
+  .no-slots {
+    text-align: center;
+    padding: 3rem 0;
+    color: #6c757d;
+
+    p {
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+
+  .add-to-cart-section {
+    text-align: right;
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e9ecef;
+
+    .add-to-cart-btn {
+      background: linear-gradient(135deg, #5e81f4 0%, #4a6cf7 100%);
+      border: none;
+      border-radius: 16px;
+      padding: 16px 32px;
+      font-weight: 700;
+      font-size: 16px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 8px 24px rgba(94, 129, 244, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+
+      &:hover:not(:disabled) {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 32px rgba(94, 129, 244, 0.4);
+        background: linear-gradient(135deg, #4a6cf7 0%, #3d5af1 100%);
+      }
+
+      &:disabled {
+        background: #e9ecef;
+        color: #6c757d;
+        box-shadow: none;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .court-info {
+    .court-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: #2c3e50;
+      margin-bottom: 0.5rem;
+    }
+
+    .court-sport {
+      font-size: 14px;
+      color: #6c757d;
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .court-description {
+      color: #2c3e50;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .court-prices {
+      color: #2c3e50;
+      font-size: 14px;
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .selected-date {
+      color: #2c3e50;
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 1200px) {
+  .court-booking-container {
+    .time-slots {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 12px;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .court-booking-container {
+    padding: 1.5rem 0;
+
+    .page-header {
+      .page-title {
+        font-size: 28px;
+      }
+    }
+
+    .selection-card,
+    .slots-card,
+    .court-details-card {
+      margin-bottom: 1.5rem;
+
+      .card-body {
+        padding: 1rem;
+      }
+    }
+
+    .time-slots {
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 12px;
+    }
+
+    .add-to-cart-section {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .date-picker-container {
+      .date-picker-scroll {
+        .date-card {
+          width: 80px;
+          height: 90px;
+
+          .date-number {
+            font-size: 22px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .court-booking-container {
+    padding: 1rem 0;
+
+    .page-header {
+      .page-title {
+        font-size: 24px;
+      }
+
+      .page-subtitle {
+        font-size: 16px;
+      }
+    }
+
+    .selection-card,
+    .slots-card,
+    .court-details-card {
+      .card-body {
+        padding: 1rem;
+      }
+
+      .card-title {
+        font-size: 20px;
+      }
+    }
+
+    .time-slots {
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 10px;
+
+      .time-slot-btn {
+        font-size: 14px;
+        padding: 12px 10px;
+        min-height: 48px;
+      }
+    }
+
+    .court-info {
+      .court-name {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .court-prices {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+    }
+
+    .date-picker-container {
+      .date-picker-scroll {
+        gap: 12px;
+
+        .date-card {
+          width: 70px;
+          height: 80px;
+
+          .date-day {
+            font-size: 12px;
+          }
+
+          .date-number {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .court-booking-container {
+    .time-slots {
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      gap: 8px;
+
+      .time-slot-btn {
+        font-size: 13px;
+        padding: 10px 8px;
+        min-height: 44px;
+      }
+    }
+
+    .date-picker-container {
+      .date-picker-scroll {
+        gap: 8px;
+
+        .date-card {
+          width: 60px;
+          height: 70px;
+
+          .date-day {
+            font-size: 11px;
+          }
+
+          .date-number {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+} 

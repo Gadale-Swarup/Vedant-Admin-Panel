@@ -17,6 +17,7 @@ import Login from "./Pages/Login/Login";
 import Booking from "./Pages/Booking/Booking";
 import Users from "./Pages/Users/Users";
 import CourtManagement from "./Pages/CourtManagement/CourtManagement";
+import CourtBooking from "./Pages/CourtBooking/CourtBooking";
 
 const Layout = lazy(() => import("./Component/Layout/Layout"));
 
@@ -43,6 +44,7 @@ function App() {
             <Route path="booking" element={<Booking />} />
             <Route path="users" element={<Users />} />
             <Route path="court-management" element={<CourtManagement />} />
+            <Route path="add-booking" element={<CourtBooking />} />
           </Route>
         </Routes>
       </Suspense>

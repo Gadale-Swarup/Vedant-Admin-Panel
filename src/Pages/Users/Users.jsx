@@ -7,66 +7,116 @@ import {
   Modal,
   Form,
   Badge,
+  Table,
 } from "react-bootstrap";
 import { FaPlus, FaEdit, FaTrash, FaUser } from "react-icons/fa";
-import CustomBreadcrumb from "../../Component/Breadcrumb/Breadcrumb";
-import CustomTable from "../../Component/Table/Table";
-import { getUsers, createUser, updateUser, deleteUser } from "../../Apis/api";
+import { useNavigate } from "react-router-dom";
+import Loader from "../../Component/Loader/Loader";
 import "./Users.scss";
 
 const Users = () => {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
-  const [editingUserId, setEditingUserId] = useState(null);
+  const [_editingUserId, setEditingUserId] = useState(null);
   const [users, setUsers] = useState([]);
-  const [pagination, setPagination] = useState({
-    currentPage: 1,
-    totalPages: 1,
-    totalRecords: 0,
-    recordsPerPage: 10,
-  });
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filters, setFilters] = useState({ role: "ALL", status: "ALL" });
-  const [loading, setLoading] = useState(true);
 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     mobile: "",
     password: "",
-    role: "STUDENT",
+    role: "CUSTOMER",
     active: true,
   });
 
-  const breadcrumbItems = [
-    { label: "Dashboard", path: "/dashboard" },
-    { label: "Users", path: "/users" },
+  // Mock user data to match the image
+  const mockUsers = [
+    {
+      id: 1,
+      name: "Player Sameer",
+      email: "player.sameer@example.com",
+      mobile: "+91 98765 43210",
+      role: "CUSTOMER",
+      status: "Active",
+      joined: "09/04/2025",
+      initials: "PS"
+    },
+    {
+      id: 2,
+      name: "Sameer Chikshe",
+      email: "sameer.chikshe@example.com",
+      mobile: "+91 98765 43211",
+      role: "CUSTOMER",
+      status: "Active",
+      joined: "10/04/2025",
+      initials: "SC"
+    },
+    {
+      id: 3,
+      name: "Player John",
+      email: "player.john@example.com",
+      mobile: "+91 98765 43212",
+      role: "CUSTOMER",
+      status: "Active",
+      joined: "11/04/2025",
+      initials: "PJ"
+    },
+    {
+      id: 4,
+      name: "Coach Anand",
+      email: "coach.anand@example.com",
+      mobile: "+91 98765 43213",
+      role: "COACH",
+      status: "Active",
+      joined: "12/04/2025",
+      initials: "CA"
+    },
+    {
+      id: 5,
+      name: "Shravani Joshi",
+      email: "shravani.joshi@example.com",
+      mobile: "+91 98765 43214",
+      role: "CUSTOMER",
+      status: "Active",
+      joined: "13/04/2025",
+      initials: "SJ"
+    },
+    {
+      id: 6,
+      name: "Admin Admin",
+      email: "admin.admin@example.com",
+      mobile: "+91 98765 43215",
+      role: "ADMIN",
+      status: "Active",
+      joined: "15/04/2025",
+      initials: "AA"
+    }
   ];
 
-  const fetchUsers = async (page = 1) => {
-    setLoading(true);
-    try {
-      const params = {
-        page,
-        limit: pagination.recordsPerPage,
-        search: searchTerm,
-        role: filters.role === "ALL" ? "" : filters.role,
-        status: filters.status === "ALL" ? "" : filters.status,
-      };
-      const response = await getUsers(params);
-      setUsers(response.data.data.records);
-      setPagination(response.data.data.pagination);
-    } catch (error) {
-      console.error("Error fetching users:", error);
-    } finally {
-      setLoading(false);
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true'
+    if (!isAuthenticated) {
+      navigate('/')
     }
-  };
+  }, [navigate])
 
   useEffect(() => {
-    fetchUsers(pagination.currentPage);
-  }, [searchTerm, filters, pagination.currentPage]);
+    const loadUsers = async () => {
+      setLoading(true);
+      try {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setUsers(mockUsers);
+      } catch (error) {
+        console.error("Error loading users:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    loadUsers();
+  }, []);
 
   const handleClose = () => {
     setShowModal(false);
@@ -77,7 +127,7 @@ const Users = () => {
       email: "",
       mobile: "",
       password: "",
-      role: "STUDENT",
+      role: "CUSTOMER",
       active: true,
     });
   };
@@ -95,7 +145,7 @@ const Users = () => {
       email: user.email,
       mobile: user.mobile,
       role: user.role,
-      active: user.active,
+      active: user.status === "Active",
     });
     setShowModal(true);
   };
@@ -112,22 +162,23 @@ const Users = () => {
     e.preventDefault();
     try {
       if (isEditMode) {
-        await updateUser(editingUserId, formData);
+        // TODO: Implement update user API
+        console.log('Updating user:', formData);
       } else {
-        await createUser(formData);
+        // TODO: Implement create user API
+        console.log('Creating user:', formData);
       }
-      fetchUsers(pagination.currentPage);
       handleClose();
     } catch (error) {
       console.error("Error submitting form:", error);
     }
   };
 
-  const handleDelete = async (id) => {
+  const _handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this user?")) {
       try {
-        await deleteUser(id);
-        fetchUsers(pagination.currentPage);
+        // TODO: Implement delete user API
+        console.log('Deleting user:', id);
       } catch (error) {
         console.error("Error deleting user:", error);
       }
@@ -135,98 +186,99 @@ const Users = () => {
   };
 
   const getStatusBadge = (status) => {
-    const statusColors = {
-      true: "success",
-      false: "secondary",
-    };
-    return <Badge bg={statusColors[status]}>{status ? 'Active' : 'Inactive'}</Badge>;
+    return (
+      <Badge bg="success" className="status-badge">
+        {status}
+      </Badge>
+    );
   };
 
-  const headers = ["Name", "Email", "Mobile", "Role", "Status", "Actions"];
-  const tableData = users.map((user) => [
-    <div className="user-name">{user.name}</div>,
-    user.email,
-    user.mobile,
-    user.role,
-    getStatusBadge(user.active),
-    <div className="action-buttons">
-      <Button
-        variant="outline-primary"
-        size="sm"
-        className="me-1"
-        onClick={() => handleEdit(user)}
-      >
-        <FaEdit />
-      </Button>
-      <Button variant="outline-danger" size="sm" onClick={() => handleDelete(user.id)}>
-        <FaTrash />
-      </Button>
-    </div>,
-  ]);
+  const getRoleDisplay = (role) => {
+    const roleMap = {
+      'CUSTOMER': 'Customer',
+      'COACH': 'Coach',
+      'ADMIN': 'Admin'
+    };
+    return roleMap[role] || role;
+  };
+
+  const UserRow = ({ user }) => (
+    <tr>
+      <td>
+        <div className="user-info">
+          <div className="user-avatar">
+            {user.initials}
+          </div>
+          <div className="user-details">
+            <div className="user-name">{user.name}</div>
+          </div>
+        </div>
+      </td>
+      <td className="role-cell">{getRoleDisplay(user.role)}</td>
+      <td className="status-cell">{getStatusBadge(user.status)}</td>
+      <td className="joined-cell">{user.joined}</td>
+      <td className="actions-cell">
+        <Button
+          variant="outline-secondary"
+          size="sm"
+          className="edit-btn"
+          onClick={() => handleEdit(user)}
+        >
+          <FaEdit /> Edit
+        </Button>
+      </td>
+    </tr>
+  );
+
+  if (loading) {
+    return <Loader message="Loading Users..." />;
+  }
 
   return (
-    <Container fluid className="user-container p-4">
+    <Container fluid className="users-container p-4">
+      {/* Header Section */}
       <Row className="mb-4">
         <Col>
-          <CustomBreadcrumb items={breadcrumbItems} />
-        </Col>
-      </Row>
-
-      <Row className="mb-4">
-        <Col>
-          <div className="d-flex justify-content-between align-items-center">
-            <h2 className="page-title">Users</h2>
-            <Button variant="primary" onClick={handleShow}>
-              <FaPlus className="me-2" /> Add User
-            </Button>
+          <div className="page-header">
+            <h2 className="page-title">User Management</h2>
+            <p className="page-subtitle">Manage users and their permissions</p>
           </div>
         </Col>
-      </Row>
-
-      <Row className="mb-3">
-        <Col md={4}>
-          <Form.Control
-            type="text"
-            placeholder="Search by name, email, or mobile"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </Col>
-        <Col md={2}>
-          <Form.Select
-            name="role"
-            value={filters.role}
-            onChange={(e) => setFilters(prev => ({...prev, role: e.target.value}))}
-          >
-            <option value="ALL">All Roles</option>
-            <option value="STUDENT">Student</option>
-            <option value="ADMIN">Admin</option>
-            <option value="STAFF">Staff</option>
-          </Form.Select>
-        </Col>
-        <Col md={2}>
-          <Form.Select
-            name="status"
-            value={filters.status}
-            onChange={(e) => setFilters(prev => ({...prev, status: e.target.value}))}
-          >
-            <option value="ALL">All Statuses</option>
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
-          </Form.Select>
+        <Col className="text-end"
+        style={{
+          textAlign: '-webkit-right',
+        }}
+        >
+          <Button variant="primary" className="add-user-btn" onClick={handleShow}>
+            <FaPlus /> Add User
+          </Button>
         </Col>
       </Row>
 
+      {/* Users Table Section */}
       <Row>
         <Col>
-          <CustomTable
-            headers={headers}
-            data={tableData}
-            striped={true}
-            hover={true}
-            responsive={true}
-            loading={loading}
-          />
+          <div className="users-card">
+            <h5 className="mb-3">Users</h5>
+            <div className="table-container">
+              <Table className="users-table">
+                <thead>
+                  <tr>
+                    <th>User</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Joined</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {users.map(user => (
+                    <UserRow key={user.id} user={user} />
+                  ))}
+                </tbody>
+              </Table>
+            </div>
+          </div>
         </Col>
       </Row>
 
@@ -293,9 +345,9 @@ const Users = () => {
                 value={formData.role}
                 onChange={handleInputChange}
               >
-                <option value="STUDENT">Student</option>
+                <option value="CUSTOMER">Customer</option>
+                <option value="COACH">Coach</option>
                 <option value="ADMIN">Admin</option>
-                <option value="STAFF">Staff</option>
               </Form.Select>
             </Form.Group>
             <Form.Group className="mb-3">
@@ -313,7 +365,7 @@ const Users = () => {
             <Button variant="secondary" onClick={handleClose}>
               Cancel
             </Button>
-            <Button variant="primary" type="submit" size="sm">
+            <Button variant="primary" type="submit">
               {isEditMode ? "Update User" : "Add User"}
             </Button>
           </Modal.Footer>
